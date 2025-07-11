@@ -2,6 +2,7 @@ const apiKey="158fd9fcaab3009be24d56c90e3e9b6b";
 
 const searchBtn = document.querySelector(".search-icon");
 const searchBar = document.querySelector(".search-text-box");
+const search = document.querySelector(".search-bar"); 
 
 const loadingview = document.querySelector(".loading-display");
 const weatherview = document.querySelector(".weather-display");
@@ -155,16 +156,26 @@ searchBtn.addEventListener("click",function (){
     updateData(searchBar.value,formatedDate);
 })
 
-const searchbar = document.querySelector(".search-bar"); 
-
-
 
 searchBar.addEventListener("focus",function(){
-    searchbar.classList.add("active-border");
+    search.classList.add("active-border");
 });
 
 searchBar.addEventListener("blur",function(){
-    searchbar.classList.remove("active-border")
+    search.classList.remove("active-border")
 })
 
 
+searchBar.addEventListener("keydown",function(event){
+    if(event.key=== "Enter"){
+        event.preventDefault();
+        let now = new Date();
+        const options = {
+            weekday: 'short',
+            day: '2-digit',
+            month: 'short'
+        };
+        let formatedDate = now.toLocaleDateString('en-Us',options); 
+        updateData(searchBar.value,formatedDate);
+    }
+})
