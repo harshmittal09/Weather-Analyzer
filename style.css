@@ -50,6 +50,7 @@ body{
 }
 
 .container .search-bar .search-text-box{
+    width: 100%;
     border: none;
     outline: none;
     height: 20px;
