@@ -96,15 +96,17 @@ async function update_five_day_weather(city){
     let forecast_index=1;
 
     for(item in dailyForecast){
-        document.querySelector(`.forecast-${forecast_index}-date`).textContent=changeDateFormat(dailyForecast[item].dt);
-
-        const weather_icon = document.querySelector(`.forecast-${forecast_index}-icon`);
-        const weather_data = dailyForecast[item].weather[0].main;
-        changeWeatherIcon(weather_data,weather_icon);
-
-        document.querySelector(`.forecast-${forecast_index}-temp`).textContent = Math.round(dailyForecast[item].main.temp);
-
-        forecast_index++;
+        if(forecast_index<=5){
+            document.querySelector(`.forecast-${forecast_index}-date`).textContent=changeDateFormat(dailyForecast[item].dt);
+    
+            const weather_icon = document.querySelector(`.forecast-${forecast_index}-icon`);
+            const weather_data = dailyForecast[item].weather[0].main;
+            changeWeatherIcon(weather_data,weather_icon);
+    
+            document.querySelector(`.forecast-${forecast_index}-temp`).textContent = Math.round(dailyForecast[item].main.temp);
+    
+            forecast_index++;
+        }
     }
 
 }
